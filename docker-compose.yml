@@ -1,0 +1,16 @@
+version: '3'
+services:
+  app:
+    build: docker/php
+    container_name: skillup_app
+    volumes:
+      - ./:/var/www
+  nginx:
+    image: nginx:1.21
+    container_name: skillup_nginx
+    ports:
+      - 2607:80
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - app
