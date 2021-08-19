@@ -12,5 +12,6 @@ services:
       - 2607:80
     volumes:
       - ./:/var/www
+      - ./docker/nginx/2607.local.conf:/etc/nginx/conf.d/2607.local.conf
     depends_on:
       - app
