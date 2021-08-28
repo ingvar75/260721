@@ -1,4 +1,3 @@
-lines (51 sloc) 798 Bytes
 <?php
 
 $var = 'Test text';
