@@ -1,6 +1,6 @@
 <?php
 
-//$x = ;
+$x =1||2||3 ;
 if ($x == 1) {
     echo 1;
 }
@@ -22,3 +22,58 @@ if ($x == 3) {
  * [ 1 ] [ + ] [ 3 ] [ Calculate ]
  * Ркзультат: 1 + 3 = 4
  */
+
+?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+</head>
+<body>
+<h1>Calculator</h1>
+
+<?php
+switch ($_POST['action']){
+    case "+":
+         if ($_POST['nomber1'] != '' && $_POST['nomber2'] != ''){
+           echo $_POST['nomber1'],$_POST['action'],$_POST['nomber2']. "=". $_POST['nomber1']+$_POST['nomber2']."<br>";
+         }else{
+             echo "No data in form! Please enter data";
+         }
+           break;
+    case "-":
+         if ($_POST['nomber1'] != '' && $_POST['nomber2'] != ''){
+           echo $_POST['nomber1'],$_POST['action'],$_POST['nomber2']. "=". $_POST['nomber1']-$_POST['nomber2']."<br>";
+         }else{
+             echo "No data in form! Please enter data";
+         }
+           break;
+    case "/":
+         if ($_POST['nomber1'] != '' && $_POST['nomber2'] != ''){
+           if ($_POST['nomber2'] == 0) echo 'Ошибка, делить на ноль нельзя!'; break;
+           echo $_POST['nomber1'],$_POST['action'],$_POST['nomber2']. "=". $_POST['nomber1']/$_POST['nomber2']."<br>";
+         }else{
+             echo "No data in form! Please enter data";
+         }
+           break;
+    case "*":
+         if ($_POST['nomber1'] != '' && $_POST['nomber2'] != ''){
+           echo $_POST['nomber1'],$_POST['action'],$_POST['nomber2']. "=". $_POST['nomber1']*$_POST['nomber2']."<br>";
+         }else{
+             echo "No data in form! Please enter data";
+         }
+           break;
+
+  }
+?>
+<form method="post">
+    <label for="number-input">Enter number1, "+","-","/","*" and nomber2</label><br>
+    <input type="number" name="nomber1">
+    <input type="text" name="action">
+    <input type="number" name="nomber2">
+
+    <button type="submit">GO</button>
+</form>
+</body>
+</html>
