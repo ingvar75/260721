@@ -21,19 +21,22 @@ if (gettype($array) == 'array'){
     echo "Array <br>(<br>";
 
         $key = array_keys($array);
-        //var_dump($array);
         foreach ($key as $item){
-            if (gettype($array[$item]) != 'array'){
-                echo "[$item]".'=>'.$array[$item]."<br>";$counter++;
+            if (gettype($array[$item]) == 'array'){
+                echo "<br>[$item]";
+                echo "=>";
+                countArray($array[$item]);
+                $counter++;
+
             }else {
-                echo $item . '=>' . countArray($array[$item]) . "<br>";$counter++;
+                   echo "[$item]".'=>'.$array[$item]."<br>";$counter++;
                   }
         }
-    return;
-}
+
+}return;
 }
 countArray($array);
-echo $counter;
+echo "Counter arrays: $counter";
 
 
 echo '<hr>';
