@@ -17,19 +17,24 @@ function countArray($array)
 {
     global $counter;
 
-        $counter++;
+if (gettype($array) == 'array'){
+    echo "Array <br>(<br>";
+
         $key = array_keys($array);
         //var_dump($array);
         foreach ($key as $item){
             if (gettype($array[$item]) != 'array'){
-                echo $item.'=>'.$array[$item]."<br>";
+                echo "[$item]".'=>'.$array[$item]."<br>";$counter++;
             }else {
-                echo $item . '=>' . countArray($array[$item]) . "<br>";
+                echo $item . '=>' . countArray($array[$item]) . "<br>";$counter++;
                   }
         }
     return;
 }
-echo countArray($array), $counter;
+}
+countArray($array);
+echo $counter;
+
 
 echo '<hr>';
 
