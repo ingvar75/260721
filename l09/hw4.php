@@ -12,32 +12,33 @@ $array = [
     ],
 ];
 
-
-function countArray($array)
+$tab = 0;
+function countArray($array, int $tab)
 {
     global $counter;
-
+    $tabs = "&nbsp";
 if (gettype($array) == 'array'){
-    echo "Array <br>(<br>";
+    echo $tabs,'Array','<br>';
+    $tabs = str_repeat($tabs, $tab+4);
+    echo $tabs,"(<br>";
 
         $key = array_keys($array);
         foreach ($key as $item){
             if (gettype($array[$item]) == 'array'){
-                echo "<br>[$item]";
-                echo "=>";
-                countArray($array[$item]);
+                echo $tabs,"[$item]","=>";
+                countArray($array[$item], $tab+4);
                 $counter++;
 
             }else {
-                   echo "[$item]".'=>'.$array[$item]."<br>";$counter++;
+                   echo $tabs, "[$item]".'=>'.$array[$item]."<br>";$counter++;
+
                   }
         }
-
+    echo "$tabs)<br>";
 }return;
 }
-countArray($array);
-echo "Counter arrays: $counter";
-
+countArray($array, $tab);
+echo "<br>Counter: ".$counter;
 
 echo '<hr>';
 
