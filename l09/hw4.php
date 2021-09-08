@@ -11,33 +11,43 @@ $array = [
         'r' => [1, 2],
     ],
 ];
-
-$tab = 0;
+$k = 0;
+$tab = 1;
+$tabs = "    ";
+echo "<pre>";
+echo 'Array'.PHP_EOL,"(".PHP_EOL;
+countArray($array, $tab);
 function countArray($array, int $tab)
 {
     global $counter;
-    $tabs = "&nbsp";
-if (gettype($array) == 'array'){
-    echo $tabs,'Array','<br>';
-    $tabs = str_repeat($tabs, $tab+4);
-    echo $tabs,"(<br>";
+    global $tabs;
+    global $k;
+        foreach ($array as $key => $item){
 
-        $key = array_keys($array);
-        foreach ($key as $item){
-            if (gettype($array[$item]) == 'array'){
-                echo $tabs,"[$item]","=>";
-                countArray($array[$item], $tab+4);
+           if (is_array($array[$key]) == true) {
+                $k++;
+                echo str_repeat($tabs, $tab). "[$key] " . "=>" . " Array". PHP_EOL;
+                echo str_repeat($tabs, $tab+1)."(".PHP_EOL;
+                countArray($array[$key], $tab+1);
                 $counter++;
+                echo str_repeat($tabs, $tab+1).")".PHP_EOL;
 
             }else {
-                   echo $tabs, "[$item]".'=>'.$array[$item]."<br>";$counter++;
-
+               if ($k==0) {
+                   echo str_repeat($tabs, $tab), "[$key] ".'=> '.$array[$key].PHP_EOL;$counter++;
+               }
+                      else {
+                          echo str_repeat($tabs, $tab + 1), "[$key] " . '=> ' . $array[$key] . PHP_EOL;
+                          $counter++;
+                      }
                   }
         }
-    echo "$tabs)<br>";
-}return;
+return;
 }
-countArray($array, $tab);
+
+echo ")";
+echo "</pre>";
+
 echo "<br>Counter: ".$counter;
 
 echo '<hr>';
