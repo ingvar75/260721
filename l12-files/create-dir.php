@@ -11,4 +11,4 @@ require_once __DIR__ . '/lib/directories.php';
 require_once __DIR__ . '/lib/response.php';
 
 createDirectory($dirName, $rout);
-redirect("/l12/index.php?rout={$rout}");
+redirect("/l12-files/index.php?rout={$rout}");

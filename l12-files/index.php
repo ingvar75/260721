@@ -77,6 +77,6 @@ $items = readDirectory($rout);
     </div>
 </div>
 
-<script src="/l12/js/bootstrap.bundle.js"></script>
+<script src="/l12-files/js/bootstrap.bundle.js"></script>
 </body>
 </html>
