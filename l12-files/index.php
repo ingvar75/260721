@@ -2,7 +2,15 @@
 
 require_once __DIR__ . '/lib/directories.php';
 require_once __DIR__ . '/lib/files.php';
+
 $rout = prepareRout($_GET['rout'] ?? '');
+$isDir = (bool)($_GET['isDir'] ?? 1);
+$content = '';
+if (!$isDir) {
+    $content = renderFile($rout);
+    $rout = dirname($rout);
+}
+
 $items = readDirectory($rout);
 
 ?>
@@ -29,7 +37,7 @@ $items = readDirectory($rout);
                 <input type="hidden" name="rout" value="<?= $rout ?>">
                 <div class="row">
                     <div class="col-8">
-                        <input type="file" name="upload" class="form-control">
+                        <input type="file" name="upload[]" multiple class="form-control">
                     </div>
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary">Upload</button>
@@ -43,7 +51,7 @@ $items = readDirectory($rout);
             <ul class="list-unstyled mt-3">
                 <?php foreach ($items as $item): ?>
                     <li>
-                        <a href="index.php?rout=<?= $item['rout'] ?>">
+                        <a href="index.php?rout=<?= $item['rout'] ?>&isDir=<?= (int)$item['is_dir'] ?>">
                             <?= $item['name'] ?>
                         </a>
                     </li>
@@ -51,6 +59,9 @@ $items = readDirectory($rout);
             </ul>
         </div>
         <div class="col-8">
+            <div class="mt-3">
+                <?= $content ?>
+            </div>
         </div>
     </div>
 </div>
@@ -80,3 +91,5 @@ $items = readDirectory($rout);
 <script src="/l12-files/js/bootstrap.bundle.js"></script>
 </body>
 </html>
+
+© 2021 GitHub, Inc.

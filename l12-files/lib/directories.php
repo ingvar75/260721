@@ -48,8 +48,8 @@ function readDirectory(string $rout): array
 function preparePath(string $rout): string
 {
     $path = realpath(STORAGE_DIR . $rout);
-    if (!is_dir($path)) {
-        exit("Directory {$rout} is not exists");
+    if (!is_file($path) && !is_dir($path)) {
+        exit("{$rout} is not exists");
     }
 
     return $path;
