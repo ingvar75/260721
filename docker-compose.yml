@@ -7,6 +7,8 @@ services:
       - ./:/var/www
     env_file:
       - .env
+    depends_on:
+      - db
   nginx:
     image: nginx:1.21
     container_name: 260721_nginx
@@ -15,5 +17,29 @@ services:
     volumes:
       - ./:/var/www
       - ./docker/nginx/2607.local.conf:/etc/nginx/conf.d/2607.local.conf
+      - ./docker/nginx/2607-shop.local.conf:/etc/nginx/conf.d/2607-shop.local.conf
     depends_on:
       - app
+  db:
+    platform: linux/x86_64
+    image: mysql:8.0.23
+    ports:
+      - 3306:3306
+    restart: always
+    volumes:
+      - ./docker/mysql/files:/var/lib/mysql
+      - ./docker/mysql/tmp:/tmp
+    container_name: 260721_mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: skillup_db
+      MYSQL_USER: skillup_user
+      MYSQL_PASSWORD: skillup_pwd
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 26071:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=2607-pma.local

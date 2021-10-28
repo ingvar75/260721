@@ -41,7 +41,16 @@ function getDirs(string $rout): array
 function renderFilesHTML(array $groupedFiles): string
 {
     $html = '<ul>';
-    // ------- Your code here ------- //
+    foreach ($groupedFiles as $dir => $files) {
+        $html .= '<li>';
+        $html .= $dir;
+        $html .= '<ul>';
+        foreach ($files as $file) {
+            $html .= "<li><a href=\"/{$dir}/{$file}\">{$file}</a></li>";
+        }
+        $html .= '</ul>';
+        $html .= '</li>';
+    }
     $html .= '</ul>';
     return $html;
 }
@@ -57,7 +66,9 @@ function renderFilesHTML(array $groupedFiles): string
     <title>Document</title>
 </head>
 <body>
-<ul>
+<?= renderFilesHTML($groupedFiles) ?>
+
+<!--<ul>
     <?php foreach ($groupedFiles as $dir => $files): ?>
         <li>
             <?= $dir ?>
@@ -70,6 +81,6 @@ function renderFilesHTML(array $groupedFiles): string
             </ul>
         </li>
     <?php endforeach; ?>
-</ul>
+    </ul>-->
 </body>
 </html>
