@@ -21,7 +21,7 @@ services:
     depends_on:
       - app
   db:
-    platform: linux/x86_64
+
     image: mysql:8.0.23
     ports:
       - 3306:3306

@@ -1,12 +1,16 @@
 <?php
 
+use app\views\dto\NotFoundDTO;
 use components\Database;
 use components\Dispatcher;
 use components\Request;
 use components\Response;
 use components\Router;
+use components\Session;
 use components\Storage;
 use components\Template;
+use components\User;
+use exceptions\NotFoundException;
 
 class App
 {
@@ -16,6 +20,8 @@ class App
     public const REQUEST = 'request';
     public const RESPONSE = 'response';
     public const DB = 'database';
+    public const SESSION = 'session';
+    public const USER = 'user';
 
     private static ?self $instance = null;
 
@@ -31,10 +37,12 @@ class App
 
         self::$instance = new self($config);
 
-        self::$instance
-            ->setComponents()
-            ->getRouter()
-            ->run();
+        $app = self::$instance->setComponents();
+        try {
+            $app->getRouter()->run();
+        } catch (NotFoundException $exception) {
+            $app->process404($exception);
+        }
 
         return self::$instance;
     }
@@ -82,7 +90,9 @@ class App
             ->set(self::TEMPLATE, new Template(...$this->config->get('components.template')))
             ->set(self::REQUEST, new Request())
             ->set(self::RESPONSE, new Response())
-            ->set(self::DB, new Database(...$this->config->get('components.db')));
+            ->set(self::DB, new Database(...$this->config->get('components.db')))
+            ->set(self::SESSION, new Session())
+            ->set(self::USER, new User());
 
         return $this;
     }
@@ -95,5 +105,16 @@ class App
         }
 
         return $router;
+    }
+
+    private function process404(NotFoundException $exception): void
+    {
+        http_response_code(404);
+
+        /** @var Template $template */
+        $template = $this->components->get(self::TEMPLATE);
+        $dto = new NotFoundDTO(['message' => $exception->getMessage()]);
+
+        echo $template->render404($dto);
     }
 }

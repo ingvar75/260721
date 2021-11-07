@@ -13,7 +13,7 @@ use components\db\ActiveQuery;
  * @property string $last_login_date
  * @property string $created_at
  */
-class User extends ActiveQuery
+class UserEntity extends ActiveQuery
 {
     public function tableName(): string
     {
