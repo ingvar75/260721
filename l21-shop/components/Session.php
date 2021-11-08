@@ -3,6 +3,7 @@
 namespace components;
 
 use helpers\ArraysHelper;
+use RuntimeException;
 
 class Session
 {
@@ -23,6 +24,20 @@ class Session
     public function set(string $key, mixed $value): self
     {
         $_SESSION[$key] = $value;
+        return $this;
+    }
+
+    public function add(string $key, mixed $value): self
+    {
+        if (!isset($_SESSION[$key])) {
+            $_SESSION[$key] = [];
+        }
+
+        if (!is_array($_SESSION[$key])) {
+            throw new RuntimeException('Storage data is not array');
+        }
+
+        $_SESSION[$key][] = $value;
         return $this;
     }
 

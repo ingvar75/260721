@@ -39,7 +39,8 @@ class App
 
         $app = self::$instance->setComponents();
         try {
-            $app->getRouter()->run();
+            $answer = $app->getRouter()->run();
+            $app->processAnswer($answer);
         } catch (NotFoundException $exception) {
             $app->process404($exception);
         }
@@ -116,5 +117,20 @@ class App
         $dto = new NotFoundDTO(['message' => $exception->getMessage()]);
 
         echo $template->render404($dto);
+    }
+
+    private function processAnswer(mixed $answer)
+    {
+        switch (gettype($answer)) {
+            case 'string':
+                echo $answer;
+                break;
+            case 'array':
+                header('Content-Type: application/json; charset=utf-8');
+                echo json_encode($answer);
+                break;
+            default:
+                throw new RuntimeException('Undefined answer type');
+        }
     }
 }

@@ -4,11 +4,12 @@ namespace app\views\dto\products;
 
 use app\models\entities\ProductEntity;
 use app\views\dto\AbstractViewDTO;
+use Generator;
 
 class ListDTO extends AbstractViewDTO
 {
     /**
-     * @var ProductEntity[]
+     * @var Generator|ProductEntity[]
      */
-    public array $products;
+    public Generator $products;
 }
