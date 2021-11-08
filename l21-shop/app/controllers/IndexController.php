@@ -6,8 +6,8 @@ use components\AbstractController;
 
 class IndexController extends AbstractController
 {
-    public function actionIndex()
+    public function actionIndex(): string
     {
-        echo $this->render('index/index');
+        return $this->render('index/index');
     }
 }

@@ -8,8 +8,8 @@ class CabinetController extends AbstractController
 {
     protected bool $isSecured = true;
 
-    public function actionIndex()
+    public function actionIndex(): string
     {
-        echo $this->render('cabinet/index');
+        return $this->render('cabinet/index');
     }
 }
