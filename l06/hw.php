@@ -34,6 +34,7 @@ if ($x == 3) {
 <h1>Calculator</h1>
 
 <?php
+if (!isset($_POST['action'])) $_POST['action'] = null;
 switch ($_POST['action']){
     case "+":
          if ($_POST['nomber1'] != '' && $_POST['nomber2'] != ''){
@@ -52,7 +53,7 @@ switch ($_POST['action']){
     case "/":
          if ($_POST['nomber1'] != '' && $_POST['nomber2'] != ''){
            if ($_POST['nomber2'] == 0) echo 'Ошибка, делить на ноль нельзя!'; break;
-           echo $_POST['nomber1'],$_POST['action'],$_POST['nomber2']. "=". $_POST['nomber1']/$_POST['nomber2']."<br>";
+           echo $_POST['number1'], $_POST['action'], $_POST['nomber2']. "=". $_POST['nomber1']/$_POST['nomber2']."<br>";
          }else{
              echo "No data in form! Please enter data";
          }
@@ -69,9 +70,15 @@ switch ($_POST['action']){
 ?>
 <form method="post">
     <label for="number-input">Enter number1, "+","-","/","*" and nomber2</label><br>
-    <input type="number" name="nomber1">
-    <input type="text" name="action">
-    <input type="number" name="nomber2">
+    <label>
+        <input type="number" name="nomber1">
+    </label>
+    <label>
+        <input type="text" name="action">
+    </label>
+    <label>
+        <input type="number" name="nomber2">
+    </label>
 
     <button type="submit">GO</button>
 </form>
