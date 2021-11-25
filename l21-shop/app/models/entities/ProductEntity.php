@@ -2,7 +2,7 @@
 
 namespace app\models\entities;
 
-use components\db\ActiveQuery;
+use components\db\ActiveRecord;
 
 /**
  * @property int $id
@@ -12,7 +12,7 @@ use components\db\ActiveQuery;
  * @property string $description
  * @property string $created_at
  */
-class ProductEntity extends ActiveQuery
+class ProductEntity extends ActiveRecord
 {
     public function tableName(): string
     {

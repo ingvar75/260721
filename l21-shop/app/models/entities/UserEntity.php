@@ -2,7 +2,7 @@
 
 namespace app\models\entities;
 
-use components\db\ActiveQuery;
+use components\db\ActiveRecord;
 
 /**
  * @property int $id
@@ -13,7 +13,7 @@ use components\db\ActiveQuery;
  * @property string $last_login_date
  * @property string $created_at
  */
-class UserEntity extends ActiveQuery
+class UserEntity extends ActiveRecord
 {
     public function tableName(): string
     {
