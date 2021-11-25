@@ -3,6 +3,7 @@
 use app\views\dto\NotFoundDTO;
 use components\Database;
 use components\Dispatcher;
+use components\LiqPay;
 use components\Request;
 use components\Response;
 use components\Router;
@@ -22,6 +23,7 @@ class App
     public const DB = 'database';
     public const SESSION = 'session';
     public const USER = 'user';
+    public const LIQ_PAY = 'liqPay';
 
     private static ?self $instance = null;
 
@@ -93,7 +95,8 @@ class App
             ->set(self::RESPONSE, new Response())
             ->set(self::DB, new Database(...$this->config->get('components.db')))
             ->set(self::SESSION, new Session())
-            ->set(self::USER, new User());
+            ->set(self::USER, new User())
+            ->set(self::LIQ_PAY, new LiqPay(...$this->config->get('components.liqPay')));
 
         return $this;
     }
@@ -123,6 +126,7 @@ class App
     {
         switch (gettype($answer)) {
             case 'string':
+            case 'NULL':
                 echo $answer;
                 break;
             case 'array':
