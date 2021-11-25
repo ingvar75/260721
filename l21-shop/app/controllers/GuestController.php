@@ -7,6 +7,8 @@ use components\AbstractController;
 
 class GuestController extends AbstractController
 {
+    protected bool $isSecured = false;
+
     public function actionLogin(): string
     {
         if ($this->request()->isPost()) {
