@@ -46,7 +46,7 @@ $cart = new Cart();
         </div>
     </nav>
     <div>
-        <a href="" class="btn btn-primary">
+        <a href="/cart/view" class="btn btn-primary">
             Cart: <span id="products-in-cart"><?= $cart->getProductsCount() ?></span> product(s)
         </a>
     </div>
