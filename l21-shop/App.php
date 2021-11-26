@@ -84,6 +84,7 @@ class App
         return $this->components;
     }
 
+    /** @noinspection PhpUndefinedClassConstantInspection */
     private function setComponents(): self
     {
         $dispatcher = new Dispatcher($_SERVER['REQUEST_URI']);
@@ -101,6 +102,7 @@ class App
         return $this;
     }
 
+    /** @noinspection PhpUndefinedClassConstantInspection */
     private function getRouter(): Router
     {
         $router = $this->components->get(self::ROUTER);
@@ -111,6 +113,7 @@ class App
         return $router;
     }
 
+    /** @noinspection PhpUndefinedClassConstantInspection */
     private function process404(NotFoundException $exception): void
     {
         http_response_code(404);
