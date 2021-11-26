@@ -8,11 +8,11 @@ use InvalidArgumentException;
 use PDO;
 use RuntimeException;
 
-abstract class ActiveQuery
+abstract class ActiveRecord
 {
     use ComponentsTrait;
 
-    private array $fields;
+    protected array $fields;
     private array $oldFields;
     private string $primaryKey;
     private bool $isNew = true;

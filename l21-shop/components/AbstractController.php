@@ -8,7 +8,7 @@ abstract class AbstractController
 {
     use ComponentsTrait;
 
-    protected bool $isSecured = false;
+    protected bool $isSecured = true;
 
     public function __construct()
     {

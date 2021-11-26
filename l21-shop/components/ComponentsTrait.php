@@ -40,4 +40,9 @@ trait ComponentsTrait
     {
         return App::get()->getComponents()->get(App::USER);
     }
+
+    public function liqPay(): LiqPay
+    {
+        return App::get()->getComponents()->get(App::LIQ_PAY);
+    }
 }
