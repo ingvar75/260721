@@ -38,7 +38,6 @@ services:
       MYSQL_USER: skillup_user
       MYSQL_PASSWORD: skillup_pwd
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
-
   db-chat:
 
     image: mysql:8.0.23
