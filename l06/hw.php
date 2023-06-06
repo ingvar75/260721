@@ -1,6 +1,7 @@
 <?php
-
-$x =1||2||3 ;
+$x =1||2||3;
+var_dump($x);
+echo "<br>";
 if ($x == 1) {
     echo 1;
 }

@@ -65,7 +65,7 @@ do {
 echo '<hr>';
 
 foreach ($a as $key => $value) {
-    echo "{$key}: {$value}<br>";
+    echo "$key: $value<br>";
 }
 
 echo '<hr>';
@@ -104,4 +104,15 @@ for ($i = 10; $i > 0; $i--) {
     }
 
     var_dump($i);
+}
+
+$iterable = static function () {
+    yield 1;
+    yield 3;
+    yield 6;
+    yield 100;
+};
+var_dump($iterable);
+foreach ($iterable() as $item) {
+    var_dump($item);
 }

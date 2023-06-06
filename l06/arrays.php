@@ -77,11 +77,11 @@ $a5 = [
 var_dump($a5);
 
 uasort($a5, static function (array $a, array $b) {
-//    if ($a['age'] === $b['age']) {
-//        return 0;
-//    }
-//    return $a['age'] > $b['age'] ? 1 : -1;
+    if ($a['age'] === $b['age']) {
+        return 0;
+    }
+    return $a['age'] > $b['age'] ? 1 : -1;
 
-    return $a['age'] <=> $b['age'];
+    //return $a['age'] <=> $b['age'];
 });
 var_dump($a5);
