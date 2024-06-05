@@ -1,4 +1,4 @@
-FROM php:8.0.3-fpm
+FROM php:8.2-fpm
 
 # Install modules
 RUN apt-get update && apt-get install -y \
@@ -41,6 +41,7 @@ COPY ./php.ini /usr/local/etc/php/
 COPY ./www.conf /usr/local/etc/php/
 
 # Install composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN curl -sS https://getcomposer.org/installer | php -- \
         --filename=composer \
         --install-dir=/usr/local/bin && \
